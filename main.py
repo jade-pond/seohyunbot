@@ -3,7 +3,8 @@ import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 
-# 최신 권장 사항에 따른 import 변경
+
+# 라이브러리 로드
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
@@ -47,8 +48,8 @@ st.header("질문해주세요ㅎㅎ")
 question = st.text_input('질문을 입력하세요.')
 
 if st.button('질문하기'):
-    with st.spinner('지서현에 대해 조사하고 있습니다...')
-    llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
-    qa_chain = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=db.as_retriever())
-    result = qa_chain({"query": question})
-    st.write(result['result'])  # 필요한 결과만 추출하여 표시
+    with st.spinner('지서현에 대해 조사하고 있습니다...'):
+        llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
+        qa_chain = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=db.as_retriever())
+        result = qa_chain({"query": question})
+        st.write(result['result'])  # 필요한 결과만 추출하여 표시
