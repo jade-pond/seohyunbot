@@ -14,8 +14,8 @@ import requests
 st.title(":blue[지서현]을 소개합니다!:sunglasses:")
 st.write("---")
 
-# 텍스트 파일 URL 설정 (고정된 경로)
-url = "https://raw.githubusercontent.com/your-username/your-repo/main/seohyun.txt"
+# 텍스트 파일 URL 설정
+url = "https://raw.githubusercontent.com/jade-pond/seohyunbot/main/seohyun.txt"
 
 def load_txt_from_url(url):
     response = requests.get(url)
