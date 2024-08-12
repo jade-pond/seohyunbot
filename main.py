@@ -6,6 +6,7 @@ from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
 from langchain.chains import RetrievalQA
 from langchain.chat_models import ChatOpenAI
+from langchain.schema import Document
 import streamlit as st
 import requests
 
@@ -19,7 +20,7 @@ def load_txt_from_url(url):
     response = requests.get(url)
     response.raise_for_status()  # 요청이 실패하면 예외 발생
     text = response.text
-    return [{"page_content": text}]  # 문서 형식에 맞게 변환
+    return [Document(page_content=text)]  # Document 객체로 반환
 
 # 텍스트 파일을 URL에서 로드 및 처리
 pages = load_txt_from_url(url)
