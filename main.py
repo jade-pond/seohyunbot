@@ -44,7 +44,7 @@ db = Chroma.from_documents(texts, embeddings_model)
 
 # Question
 st.header("궁금한 점을 말씀해주세요 :)")
-question = st.text_input('질문을 입력하세요.')
+question = st.text_input('질문하기 버튼을 눌러주세요')
 
 if st.button('질문하기'):
     with st.spinner('서현봇 로딩 중...'):
