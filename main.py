@@ -47,7 +47,7 @@ st.header("궁금한 점을 말씀해주세요 :)")
 question = st.text_input('질문을 입력하세요.')
 
 if st.button('질문하기'):
-    with st.spinning('서현봇 로딩 중...'):
+    with st.spinner('서현봇 로딩 중...'):
         llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
         qa_chain = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=db.as_retriever())
         result = qa_chain({"query": question})
