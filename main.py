@@ -48,7 +48,7 @@ question = st.text_input('질문을 입력하세요.')
 
 if st.button('질문하기'):
     with st.spinner('서현봇 로딩 중...'):
-        llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
+        llm = ChatOpenAI(model_name="gpt-4", temperature=0)
         qa_chain = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=db.as_retriever())
         result = qa_chain({"query": question})
         st.write(result['result'])  # 필요한 결과만 추출하여 표시
