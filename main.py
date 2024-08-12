@@ -12,12 +12,24 @@ from langchain_community.vectorstores import Chroma
 from langchain.chains import RetrievalQA
 from langchain_community.chat_models import ChatOpenAI
 import streamlit as st
+import requests
+import os
 
 st.title(":blue[지서현]을 소개합니다!:sunglasses:")
 st.write("---")
 
 # PDF 파일 경로 설정 (고정된 경로)
+url = "https://raw.githubusercontent.com/your-username/your-repo/main/seohyun.pdf"
 pdf_filepath = "seohyun.pdf"
+
+# 파일 다운로드
+response = requests.get(url)
+with open(pdf_filepath, "wb") as file:
+    file.write(response.content)
+
+# PDF 로드
+loader = PyPDFLoader(pdf_filepath)
+pages = loader.load_and_split()
 
 def pdf_to_documents(pdf_filepath):
     loader = PyPDFLoader(pdf_filepath)
