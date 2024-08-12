@@ -2,10 +2,7 @@ __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
-
-
 # 라이브러리 로드
-from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import Chroma
@@ -13,31 +10,21 @@ from langchain.chains import RetrievalQA
 from langchain_community.chat_models import ChatOpenAI
 import streamlit as st
 import requests
-import os
 
 st.title(":blue[지서현]을 소개합니다!:sunglasses:")
 st.write("---")
 
-# PDF 파일 경로 설정 (고정된 경로)
-url = "https://raw.githubusercontent.com/your-username/your-repo/main/seohyun.pdf"
-pdf_filepath = "seohyun.pdf"
+# 텍스트 파일 URL 설정 (고정된 경로)
+url = "https://raw.githubusercontent.com/your-username/your-repo/main/seohyun.txt"
 
-# 파일 다운로드
-response = requests.get(url)
-with open(pdf_filepath, "wb") as file:
-    file.write(response.content)
+def load_txt_from_url(url):
+    response = requests.get(url)
+    response.raise_for_status()  # 요청이 실패하면 예외 발생
+    text = response.text
+    return [{"page_content": text}]
 
-# PDF 로드
-loader = PyPDFLoader(pdf_filepath)
-pages = loader.load_and_split()
-
-def pdf_to_documents(pdf_filepath):
-    loader = PyPDFLoader(pdf_filepath)
-    pages = loader.load_and_split()
-    return pages
-
-# PDF 파일 로드 및 처리
-pages = pdf_to_documents(pdf_filepath)
+# 텍스트 파일을 URL에서 로드 및 처리
+pages = load_txt_from_url(url)
 
 # Split
 text_splitter = RecursiveCharacterTextSplitter(
