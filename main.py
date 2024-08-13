@@ -75,19 +75,32 @@ if page == "서현봇":
     # Question
     st.header("궁금한 점을 말씀해주세요 :)")
     st.markdown("🚀예시) 우아한형제들에서 어떤 업무를 수행했습니까?")
-    question = st.text_input(label="질문을 입력하세요:")
 
-    if question:  # 질문이 입력된 경우에만 처리
-        custom_prompt = f"참고: 우아한형제들과 배달의민족은 같은 회사입니다. {question}"
+    # 사용자가 입력한 질문을 세션 상태에 저장
+    if 'question' not in st.session_state:
+        st.session_state.question = ""
+    
+    question = st.text_input(label="질문을 입력하세요:", value=st.session_state.question)
+    
+    if question:
+        # 세션 상태에 질문 저장
+        st.session_state.question = question
+    
         with st.spinner('서현봇 로딩 중...'):
             chat_box = st.empty()
             stream_handler = StreamHandler(chat_box)
+            
+            # 온도 값을 높여서 유연한 답변 생성
             llm = ChatOpenAI(model_name="gpt-4", 
-                            temperature=0.7,
+                            temperature=0.7,  # 온도 값을 0.7로 조절
                             streaming=True,
                             callbacks=[stream_handler],)
+            
+            # 프롬프트에 추가 지침을 포함
+            custom_prompt = f"가능한 한 관련된 정보를 포함하여 답변을 제공해주세요. {question}"
+            
             qa_chain = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=db.as_retriever())
-            qa_chain({"query": question})
+            qa_chain({"query": custom_prompt})
 
 elif page == "추천서":
     st.title("📄 추천서")
