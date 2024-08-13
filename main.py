@@ -78,6 +78,7 @@ if page == "서현봇":
     question = st.text_input(label="질문을 입력하세요:")
 
     if question:  # 질문이 입력된 경우에만 처리
+        custom_prompt = f"참고: 우아한형제들과 배달의민족은 같은 회사입니다. {question}"
         with st.spinner('서현봇 로딩 중...'):
             chat_box = st.empty()
             stream_handler = StreamHandler(chat_box)
