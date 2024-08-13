@@ -97,7 +97,7 @@ if page == "서현봇":
                             callbacks=[stream_handler],)
             
             # 프롬프트에 추가 지침을 포함
-            custom_prompt = f"가능한 한 관련된 정보를 포함하여 답변을 제공해주세요. {question}"
+            custom_prompt = f"우아한형제들과 배달의민족은 같은 회사입니다. 지서현은 우아한형제들에서 사업관리 업무를 수행하였습니다. 주간 VOC, 폐기율 보고서 작성을 통해 유관부서와 문제를 공유하였고, 주간 VOC 회의를 주관하며 고객향 문제가 신속히 처리될 수 있도록 하였습니다. {question}"
             
             qa_chain = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=db.as_retriever())
             qa_chain({"query": custom_prompt})
