@@ -83,7 +83,7 @@ if page == "서현봇":
             chat_box = st.empty()
             stream_handler = StreamHandler(chat_box)
             llm = ChatOpenAI(model_name="gpt-4", 
-                            temperature=0,
+                            temperature=0.7,
                             streaming=True,
                             callbacks=[stream_handler],)
             qa_chain = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=db.as_retriever())
