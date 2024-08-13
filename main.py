@@ -91,8 +91,8 @@ if page == "서현봇":
             stream_handler = StreamHandler(chat_box)
             
             # 온도 값을 높여서 유연한 답변 생성
-            llm = ChatOpenAI(model_name="gpt-4", 
-                            temperature=0.7,  # 온도 값을 0.7로 조절
+            llm = ChatOpenAI(model_name="gpt-3.5-turbo", 
+                            temperature=0.9, 
                             streaming=True,
                             callbacks=[stream_handler],)
             
