@@ -1,3 +1,13 @@
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.embeddings import OpenAIEmbeddings
+from langchain.vectorstores import Chroma
+from langchain.chains import RetrievalQA
+from langchain.chat_models import ChatOpenAI
+from langchain.schema import Document
+from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
+import streamlit as st
+import requests
+
 # 사이드바에 버튼 추가 (페이지 전환용)
 st.sidebar.title("안녕하세요!")
 st.sidebar.markdown("방문해주셔서 감사합니다:)")
