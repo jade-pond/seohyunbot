@@ -8,6 +8,12 @@ from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 import streamlit as st
 import requests
 
+
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
+
 # 사이드바에 버튼 추가 (페이지 전환용)
 st.sidebar.title("안녕하세요!")
 st.sidebar.markdown("방문해주셔서 감사합니다:)")
