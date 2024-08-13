@@ -1,6 +1,6 @@
 # 사이드바에 버튼 추가 (페이지 전환용)
 st.sidebar.title("안녕하세요!")
-st.sidebar.markdown("채용 과정에서 도움이 되실까 챗봇을 만들어보았습니다. 방문해주셔서 감사합니다:)")
+st.sidebar.markdown("방문해주셔서 감사합니다:)")
 
 if st.sidebar.button("🤖:rainbow[서현 챗봇]"):
     st.session_state.page = "서현봇"
@@ -15,7 +15,7 @@ if st.sidebar.button("📚학습 활동"):
 page = st.session_state.get('page', '서현봇')
 
 if page == "서현봇":
-    st.title("서현봇입니다!🤖")
+    st.title(":blue[지서현]을 소개합니다! :sunglasses")
     st.write("---")
     
     # 텍스트 파일 URL 설정 (고정된 경로)
