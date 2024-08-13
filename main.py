@@ -31,7 +31,7 @@ if st.sidebar.button("📚학습 활동"):
 page = st.session_state.get('page', '서현봇')
 
 if page == "서현봇":
-    st.title(":blue[지서현]을 소개합니다! :sunglasses")
+    st.title(":blue[지서현]을 소개합니다! :sunglasses:")
     st.write("---")
     
     # 텍스트 파일 URL 설정 (고정된 경로)
