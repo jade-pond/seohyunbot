@@ -8,6 +8,16 @@ from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 import streamlit as st
 import requests
 
+#Stream 받아 줄 Handler 만들기
+from langchain.callbacks.base import BaseCallbackHandler
+class StreamHandler(BaseCallbackHandler):
+    def __init__(self, container, initial_text=""):
+        self.container = container
+        self.text = initial_text
+    def on_llm_new_token(self, token: str, **kwargs) -> None:
+        self.text += token
+        self.container.markdown(self.text)
+
 
 __import__('pysqlite3')
 import sys
@@ -61,16 +71,6 @@ if page == "서현봇":
 
     # Load it into Chroma
     db = Chroma.from_documents(texts, embeddings_model)
-
-    #Stream 받아 줄 Handler 만들기
-    from langchain.callbacks.base import BaseCallbackHandler
-    class StreamHandler(BaseCallbackHandler):
-        def __init__(self, container, initial_text=""):
-            self.container = container
-            self.text = initial_text
-        def on_llm_new_token(self, token: str, **kwargs) -> None:
-            self.text += token
-            self.container.markdown(self.text)
 
     # Question
     st.header("궁금한 점을 말씀해주세요 :)")
