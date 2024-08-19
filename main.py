@@ -45,16 +45,23 @@ if page == "서현봇":
     st.write("---")
     
     # 텍스트 파일 URL 설정 (고정된 경로)
-    url = "https://raw.githubusercontent.com/jade-pond/seohyunbot/main/seohyun.txt"
+    url_experience = "https://raw.githubusercontent.com/jade-pond/seohyunbot/main/Experience.txt"
+    url_motivation = "https://raw.githubusercontent.com/jade-pond/seohyunbot/main/Motivation.txt"
+    url_personality = "https://raw.githubusercontent.com/jade-pond/seohyunbot/main/Personality.txt"
 
     def load_txt_from_url(url):
         response = requests.get(url)
         response.raise_for_status()  # 요청이 실패하면 예외 발생
         text = response.text
-        return [Document(page_content=text)]  # Document 객체로 반환
+        return Document(page_content=text)
 
     # 텍스트 파일을 URL에서 로드 및 처리
-    pages = load_txt_from_url(url)
+    experience_doc = load_txt_from_url(url_experience)
+    motivation_doc = load_txt_from_url(url_motivation)
+    personality_doc = load_txt_from_url(url_personality)
+
+    # 문서를 하나의 리스트로 합침
+    documents = [experience_doc, motivation_doc, personality_doc]
 
     # Split
     text_splitter = RecursiveCharacterTextSplitter(
@@ -64,7 +71,7 @@ if page == "서현봇":
         is_separator_regex=False,
     )
 
-    texts = text_splitter.split_documents(pages)
+    texts = text_splitter.split_documents(documents)
 
     # Embedding
     embeddings_model = OpenAIEmbeddings(model="text-embedding-ada-002")
@@ -94,8 +101,8 @@ if page == "서현봇":
             
             # 시스템 프롬프트 추가
             system_prompt = (
-    "당신은 지서현을 대변하는 챗봇입니다. JSON 데이터의 '경력', '프로젝트', '성격_특징', '지원동기' 정보를 활용하여, 카카오 커머스 조직에서 어떻게 기여할 수 있는지를 설명하세요. 답변은 간결하고 설득력 있게 작성하세요."
-)
+            "당신은 지서현을 대변하는 챗봇입니다. JSON 데이터의 '경력', '프로젝트', '성격_특징', '지원동기' 정보를 활용하여, 카카오 커머스 조직에서 어떻게 기여할 수 있는지를 설명하세요. 답변은 간결하고 설득력 있게 작성하세요."
+        )
             
             # 프롬프트에 추가 지침을 포함
             custom_prompt = f"{system_prompt} {question}"
