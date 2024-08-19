@@ -156,20 +156,20 @@ elif page == "학습 활동":
         </a>
     </div>
     """, unsafe_allow_html=True)
-
-    # 링크 3 (통신사 분석)
+    
+    # 링크 3 (통신사 고객 이탈 예측 모델링)
     st.markdown("""
     <div style='border: 1px solid #ddd; padding: 10px; border-radius: 10px; margin-bottom: 20px;'>
         <a href="https://colab.research.google.com/drive/1fp-sMpao2Mrv9gAHT067JxhxipdqVCLW" target="_blank" style="text-decoration: none; color: black;">
             <div style='padding: 10px;'>
                 <h3>통신사 고객 이탈 예측 모델링</h3>
-                <p>통신사 고객 이탈 예측 모델링의 자료를 확인하세요.</p>
+                <p>통신사 고객 이탈 예측 모델링 자료를 확인하세요.</p>
             </div>
         </a>
     </div>
     """, unsafe_allow_html=True)
     
-    # 링크 3 (노션)
+    # 링크 4 (노션)
     st.markdown("""
     <div style='border: 1px solid #ddd; padding: 10px; border-radius: 10px; margin-bottom: 20px;'>
         <a href="https://jeeseohyun.notion.site/Jee-Seo-Hyun-6822c9993db843d8aff3db76ec48d34f" target="_blank" style="text-decoration: none; color: black;">
@@ -180,3 +180,4 @@ elif page == "학습 활동":
         </a>
     </div>
     """, unsafe_allow_html=True)
+
