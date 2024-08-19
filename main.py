@@ -1,12 +1,17 @@
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.embeddings import OpenAIEmbeddings
 from langchain_community.vectorstores import Chroma
-from langchain_community.chat_models import ChatOpenAI
+# from langchain_community.chat_models import ChatOpenAI
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import Document
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 import streamlit as st
 import requests
+
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 
 #Stream 받아 줄 Handler 만들기
 from langchain.callbacks.base import BaseCallbackHandler
@@ -17,12 +22,6 @@ class StreamHandler(BaseCallbackHandler):
     def on_llm_new_token(self, token: str, **kwargs) -> None:
         self.text += token
         self.container.markdown(self.text)
-
-
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-
 
 # 사이드바에 버튼 추가 (페이지 전환용)
 st.sidebar.title("안녕하세요!")
@@ -103,12 +102,11 @@ if page == "서현봇":
             
             # 시스템 프롬프트 추가
             system_prompt = (
-            "당신은 지서현을 대변하는 챗봇입니다. "
-            "JSON 데이터의 정보를 활용하여, 카카오 커머스 조직에서 어떻게 기여할 수 있는지를 설명하세요. "
-            "다만, 단점을 설명할 땐 단점 + 설명 + 해결하려는 노력 으로 구성될 수 있도록 해주세요."
-            "답변은 간결하고 설득력 있게 작성하세요. "
-            "가능하면, 이전에 수행한 프로젝트에서 얻은 결과를 강조하세요."
-        )
+                "당신은 지서현을 대변하는 챗봇입니다. "
+                "주어진 JSON 데이터를 활용하여, 카카오 커머스 조직에서의 기여 가능성을 설명하세요. "
+                "답변은 간결하고 설득력 있게 작성하고, 단점은 해결하려는 노력과 함께 설명하세요. "
+                "가능하다면, 이전 프로젝트에서 얻은 결과를 강조하세요."
+            )
             
             # 프롬프트에 추가 지침을 포함
             custom_prompt = f"{system_prompt} {question}"
@@ -118,7 +116,8 @@ if page == "서현봇":
                 chain_type="stuff", 
                 retriever=db.as_retriever()
             )
-            qa_chain({"query": custom_prompt})
+            result = qa_chain({"query": custom_prompt})
+            st.write(result['result'])  # 결과를 출력합니다.
 
 
 elif page == "추천서":
