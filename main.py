@@ -65,8 +65,8 @@ if page == "서현봇":
 
     # Split
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=800,
-        chunk_overlap=50,
+        chunk_size=900,
+        chunk_overlap=100,
         length_function=len,
         is_separator_regex=False,
     )
