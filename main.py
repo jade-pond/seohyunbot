@@ -77,15 +77,9 @@ if page == "서현봇":
     st.markdown("🚀예시) 카카오 지원 동기가 무엇입니까?")
 
     # 사용자가 입력한 질문을 세션 상태에 저장
-    if 'question' not in st.session_state:
-        st.session_state.question = ""
+    question = st.text_input(label="질문을 입력하세요:")
     
-    question = st.text_input(label="질문을 입력하세요:", value=st.session_state.question)
-    
-    if question:
-        # 세션 상태에 질문 저장
-        st.session_state.question = question
-    
+    if st.button('enter'):
         with st.spinner('서현봇 로딩 중...'):
             chat_box = st.empty()
             stream_handler = StreamHandler(chat_box)
