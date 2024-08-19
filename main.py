@@ -35,7 +35,7 @@ if st.sidebar.button("📃이력서"):
 if st.sidebar.button("📄추천서"):
     st.session_state.page = "추천서"
 if st.sidebar.button("📄포트폴리오"):
-    st.session_stage.page = "포트폴리오"
+    st.session_state.page = "포트폴리오"
 if st.sidebar.button("📄학습 활동"):
     st.session_state.page = "학습 활동"
 
@@ -133,20 +133,21 @@ elif page == "이력서":
 
 elif page == "포트폴리오":
     st.title("📃 포트폴리오")
-    # GitHub에 있는 PDF 파일의 URL
-    pdf_url = "https://drive.google.com/file/d/1sBAv5dkKQD4PjxpXCwlHKqRoiJ92T9st/view?usp=sharing"
+
+    # Google Drive에서 PDF 파일을 직접 다운로드할 수 있는 링크로 변환
+    file_id = "1sBAv5dkKQD4PjxpXCwlHKqRoiJ92T9st"
+    pdf_url = f"https://drive.google.com/uc?export=download&id={file_id}"
     
     # PDF 파일 다운로드
     response = requests.get(pdf_url)
     pdf_file = response.content
     
-    # Streamlit에서 PDF 표시
+    # Streamlit에서 PDF 다운로드 버튼
     st.download_button(label="PDF 파일 다운로드", data=pdf_file, file_name="포트폴리오.pdf")
-    
+
     # Streamlit에 PDF 미리보기 (iframe 사용)
-    st.markdown(f'<iframe src="{pdf_url}" width="700" height="500"></iframe>', unsafe_allow_html=True)
-
-
+    pdf_preview_url = f"https://drive.google.com/file/d/{file_id}/preview"
+    st.markdown(f'<iframe src="{pdf_preview_url}" width="700" height="500"></iframe>', unsafe_allow_html=True)
 
 elif page == "학습 활동":
     st.title("📃 학습 활동")
