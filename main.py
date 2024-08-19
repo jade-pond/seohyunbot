@@ -135,7 +135,7 @@ elif page == "학습 활동":
 
     # 링크 1 (네이버 블로그)
     st.markdown("""
-    <div style='border: 1px solid #ddd; padding: 10px; border-radius: 10px;'>
+    <div style='border: 1px solid #ddd; padding: 10px; border-radius: 10px; ; margin-bottom: 20px;'>
         <a href="https://blog.naver.com/jadesea0816" target="_blank" style="text-decoration: none; color: black;">
             <div style='padding: 10px;'>
                 <h3>네이버 블로그</h3>
