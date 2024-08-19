@@ -93,19 +93,18 @@ if page == "서현봇":
             # 온도 값을 높여서 유연한 답변 생성
             llm = ChatOpenAI(
                 model_name="gpt-3.5-turbo", 
-                temperature=0.9, 
+                temperature=0.5, 
                 streaming=True,
                 callbacks=[stream_handler],
             )
             
             # 시스템 프롬프트 추가
             system_prompt = (
-                "당신은 구직자인 지서현의 대변인입니다. 카카오 인사 담당자에게 지서현의 이력서와 지원 동기를 전달하고, "
-                "지서현의 경험과 능력이 카카오의 커머스 조직에 어떻게 기여할 수 있는지를 명확하고 설득력 있게 설명하세요. "
-                "친근하면서도 전문적인 톤을 유지하며, 간결하고 명확하게 소통하세요. "
-                "지서현의 경험, 역량, 그리고 카카오에 대한 열정을 강조하세요. "
-                "카카오의 조직 문화와 가치에 부합하는 점을 언급하고, 지서현이 팀에 얼마나 잘 어울릴지에 대한 확신을 심어주세요."
-            )
+                "당신은 지서현의 대변인입니다."
+                "JSON 데이터의 'experiences', 'projects', 'personality_traits', 'application_motivation' 정보를 활용하여, "
+                "카카오 커머스 조직에서 어떻게 기여할 수 있는지를 설명하세요. "
+                "답변은 간결하고 설득력 있게 작성하세요."
+)
             
             # 프롬프트에 추가 지침을 포함
             custom_prompt = f"{system_prompt} {question}"
