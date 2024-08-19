@@ -34,7 +34,9 @@ if st.sidebar.button("📃이력서"):
     st.session_state.page = "이력서"
 if st.sidebar.button("📄추천서"):
     st.session_state.page = "추천서"
-if st.sidebar.button("📚학습 활동"):
+if st.sidebar.button("📄포트폴리오"):
+    st.session_stage.page = "포트폴리오"
+if st.sidebar.button("📄학습 활동"):
     st.session_state.page = "학습 활동"
 
 # 기본 페이지를 서현봇으로 설정
@@ -129,8 +131,25 @@ elif page == "이력서":
     st.title("📃 이력서")
     st.image("https://github.com/jade-pond/seohyunbot/raw/main/CV.jpg", caption="이력서 이미지", use_column_width=True)
 
+elif page == "포트폴리오":
+    st.title("📃 포트폴리오")
+    # GitHub에 있는 PDF 파일의 URL
+    pdf_url = "https://drive.google.com/file/d/1sBAv5dkKQD4PjxpXCwlHKqRoiJ92T9st/view?usp=sharing"
+    
+    # PDF 파일 다운로드
+    response = requests.get(pdf_url)
+    pdf_file = response.content
+    
+    # Streamlit에서 PDF 표시
+    st.download_button(label="PDF 파일 다운로드", data=pdf_file, file_name="포트폴리오.pdf")
+    
+    # Streamlit에 PDF 미리보기 (iframe 사용)
+    st.markdown(f'<iframe src="{pdf_url}" width="700" height="500"></iframe>', unsafe_allow_html=True)
+
+
+
 elif page == "학습 활동":
-    st.title("📚 학습 활동")
+    st.title("📃 학습 활동")
     
 
     # 링크 1 (네이버 블로그)
