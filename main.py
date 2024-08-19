@@ -94,10 +94,7 @@ if page == "서현봇":
             
             # 시스템 프롬프트 추가
             system_prompt = (
-                "당신은 지서현의 대변인입니다."
-                "JSON 데이터의 'experiences', 'projects', 'personality_traits', 'application_motivation' 정보를 활용하여, "
-                "카카오 커머스 조직에서 어떻게 기여할 수 있는지를 설명하세요. "
-                "답변은 간결하고 설득력 있게 작성하세요."
+                "당신은 지서현을 대변하는 챗봇입니다. JSON 데이터의 'experiences', 'projects', 'personality_traits', 'application_motivation' 정보를 활용하여, 카카오 커머스 조직에서 어떻게 기여할 수 있는지를 설명하세요. 답변은 간결하고 설득력 있게 작성하세요."
 )
             
             # 프롬프트에 추가 지침을 포함
