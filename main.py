@@ -132,25 +132,50 @@ elif page == "이력서":
 elif page == "학습 활동":
     st.title("📚 학습 활동")
     
-    # 링크 1 (노션)
-    st.markdown("""
-    <div style='border: 1px solid #ddd; padding: 10px; border-radius: 10px; margin-bottom: 20px;'>
-        <a href="https://jeeseohyun.notion.site/Jee-Seo-Hyun-6822c9993db843d8aff3db76ec48d34f" target="_blank" style="text-decoration: none; color: black;">
-            <div style='padding: 10px;'>
-                <h3>노션 - 지서현</h3>
-                <p>노션에서 지서현님의 포트폴리오를 확인하세요.</p>
-            </div>
-        </a>
-    </div>
-    """, unsafe_allow_html=True)
 
-    # 링크 2 (네이버 블로그)
+    # 링크 1 (네이버 블로그)
     st.markdown("""
     <div style='border: 1px solid #ddd; padding: 10px; border-radius: 10px;'>
         <a href="https://blog.naver.com/jadesea0816" target="_blank" style="text-decoration: none; color: black;">
             <div style='padding: 10px;'>
                 <h3>네이버 블로그</h3>
-                <p>네이버 블로그에서 지서현님의 활동을 확인하세요.</p>
+                <p>네이버 블로그에서 학습 활동을 확인하세요.</p>
+            </div>
+        </a>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # 링크 2 (커머스 시각화 분석)
+    st.markdown("""
+    <div style='border: 1px solid #ddd; padding: 10px; border-radius: 10px; margin-bottom: 20px;'>
+        <a href="https://drive.google.com/file/d/1nOEXXI4s7Q0avkMvYhkm1AM-SW9ltam3/view" target="_blank" style="text-decoration: none; color: black;">
+            <div style='padding: 10px;'>
+                <h3>커머스 시각화 분석</h3>
+                <p>커머스 고객 분석 시각화 자료를 확인하세요.</p>
+            </div>
+        </a>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # 링크 3 (통신사 분석)
+    st.markdown("""
+    <div style='border: 1px solid #ddd; padding: 10px; border-radius: 10px; margin-bottom: 20px;'>
+        <a href="https://colab.research.google.com/drive/1fp-sMpao2Mrv9gAHT067JxhxipdqVCLW" target="_blank" style="text-decoration: none; color: black;">
+            <div style='padding: 10px;'>
+                <h3>통신사 고객 이탈 예측 모델링</h3>
+                <p>통신사 고객 이탈 예측 모델링의 자료를 확인하세요.</p>
+            </div>
+        </a>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # 링크 3 (노션)
+    st.markdown("""
+    <div style='border: 1px solid #ddd; padding: 10px; border-radius: 10px; margin-bottom: 20px;'>
+        <a href="https://jeeseohyun.notion.site/Jee-Seo-Hyun-6822c9993db843d8aff3db76ec48d34f" target="_blank" style="text-decoration: none; color: black;">
+            <div style='padding: 10px;'>
+                <h3>노션</h3>
+                <p>노션에서 포트폴리오를 확인하세요.</p>
             </div>
         </a>
     </div>
