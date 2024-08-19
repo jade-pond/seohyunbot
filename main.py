@@ -58,8 +58,8 @@ if page == "서현봇":
 
     # Split
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=500,
-        chunk_overlap=100,
+        chunk_size=800,
+        chunk_overlap=50,
         length_function=len,
         is_separator_regex=False,
     )
@@ -67,7 +67,7 @@ if page == "서현봇":
     texts = text_splitter.split_documents(pages)
 
     # Embedding
-    embeddings_model = OpenAIEmbeddings()
+    embeddings_model = OpenAIEmbeddings(model="text-embedding-ada-002")
 
     # Load it into Chroma
     db = Chroma.from_documents(texts, embeddings_model)
@@ -94,7 +94,7 @@ if page == "서현봇":
             
             # 시스템 프롬프트 추가
             system_prompt = (
-                "당신은 지서현을 대변하는 챗봇입니다. JSON 데이터의 'experiences', 'projects', 'personality_traits', 'application_motivation' 정보를 활용하여, 카카오 커머스 조직에서 어떻게 기여할 수 있는지를 설명하세요. 답변은 간결하고 설득력 있게 작성하세요."
+    "당신은 지서현을 대변하는 챗봇입니다. JSON 데이터의 '경력', '프로젝트', '성격_특징', '지원동기' 정보를 활용하여, 카카오 커머스 조직에서 어떻게 기여할 수 있는지를 설명하세요. 답변은 간결하고 설득력 있게 작성하세요."
 )
             
             # 프롬프트에 추가 지침을 포함
