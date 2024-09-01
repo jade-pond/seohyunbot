@@ -83,7 +83,7 @@ if page == "서현봇":
 
     # Question
     st.header("궁금한 점을 말씀해주세요 :)")
-    st.markdown("🚀예시) 카카오 지원 동기가 무엇입니까?")
+    st.markdown("🚀예시) 지원 동기가 무엇입니까?")
 
     # 사용자가 입력한 질문을 세션 상태에 저장
     question = st.text_input(label="질문을 입력하세요:")
@@ -107,7 +107,7 @@ if page == "서현봇":
             system_prompt = (
                 "당신은 지서현을 대변하는 챗봇입니다. "
                 "주어진 JSON 데이터를 활용하여, 카카오 커머스 조직에서의 기여 가능성을 설명하세요. "
-                "답변은 간결하고 설득력 있게 작성하고, 단점은 해결하려는 노력과 함께 설명하세요. "
+                "답변은 간결하고 설득력 있게 작성하세요. "
                 "가능하다면, 이전 프로젝트에서 얻은 결과를 강조하세요."
             )
             
@@ -135,7 +135,7 @@ elif page == "포트폴리오":
     st.title("📃 포트폴리오")
 
     # Google Drive에서 PDF 파일을 직접 다운로드할 수 있는 링크로 변환
-    file_id = "1sBAv5dkKQD4PjxpXCwlHKqRoiJ92T9st"
+    file_id = "1mjUNVnul8e5ZUf3uugdLNCY7qUXJ-xpN"
     pdf_url = f"https://drive.google.com/uc?export=download&id={file_id}"
     
     # PDF 파일 다운로드
